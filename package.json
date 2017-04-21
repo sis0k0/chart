@@ -28,12 +28,29 @@
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "~4.0.0",
+    "@ngtools/webpack": "1.3.0",
     "babel-traverse": "6.24.1",
     "babel-types": "6.24.1",
     "babylon": "6.17.0",
+    "copy-webpack-plugin": "~4.0.1",
+    "extract-text-webpack-plugin": "~2.1.0",
     "lazy": "1.0.11",
+    "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-typescript": "~0.4.0",
-    "typescript": "~2.2.1"
+    "nativescript-dev-webpack": "file:///home/svlaeva@bedford.progress.com/w/nativescript-dev-webpack",
+    "raw-loader": "~0.5.1",
+    "resolve-url-loader": "~2.0.2",
+    "typescript": "~2.2.1",
+    "webpack": "~2.4.1",
+    "webpack-sources": "~0.2.3"
+  },
+  "scripts": {
+    "ns-bundle": "ns-bundle",
+    "start-android-bundle": "npm run ns-bundle --android --start-app",
+    "start-ios-bundle": "npm run ns-bundle --ios --start-app",
+    "build-android-bundle": "npm run ns-bundle --android --build-app",
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
   }
 }

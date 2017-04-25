@@ -5,6 +5,7 @@ var path = require("path");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var AotPlugin = require("@ngtools/webpack").AotPlugin;
+var BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = function (platform, destinationApp) {
     if (!destinationApp) {
@@ -20,6 +21,13 @@ module.exports = function (platform, destinationApp) {
     entry["app.css"] = "./app.css";
 
     var plugins = [
+        new BundleAnalyzerPlugin({
+            analyzerMode: "static",
+            openAnalyzer: false,
+            generateStatsFile: true,
+            reportFilename: path.join(__dirname, "report", platform + '-report.html'),
+            statsFilename: path.join(__dirname, "report", platform + '-stats.json'),
+        }),
         new ExtractTextPlugin("app.css"),
         new webpack.optimize.CommonsChunkPlugin({
             name: [
@@ -28,7 +36,7 @@ module.exports = function (platform, destinationApp) {
 
                 // Compatibility workaround with NativeScript 2.5 Android runtime
                 // https://github.com/NativeScript/NativeScript/issues/3947
-                "tns-java-classes",
+                //    "tns-java-classes",
             ],
         }),
         // Define useful constants like TNS_WEBPACK
@@ -87,13 +95,13 @@ module.exports = function (platform, destinationApp) {
         resolve: {
             // Resolve platform-specific modules like module.android.js
             extensions: [
+                "." + platform + ".ts",
+                "." + platform + ".js",
+                "." + platform + ".css",
                 ".aot.ts",
                 ".ts",
                 ".js",
                 ".css",
-                "." + platform + ".ts",
-                "." + platform + ".js",
-                "." + platform + ".css",
             ],
             // Resolve {N} system modules from tns-core-modules
             modules: [

@@ -44,6 +44,7 @@
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.2.1",
     "webpack": "~2.4.1",
+    "webpack-bundle-analyzer": "^2.4.0",
     "webpack-sources": "~0.2.3"
   },
   "scripts": {
